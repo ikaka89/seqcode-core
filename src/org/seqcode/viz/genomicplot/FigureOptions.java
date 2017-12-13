@@ -207,6 +207,10 @@ public class FigureOptions {
                                 	experiments.get(oVal).expt = new ExptDescriptor("", "", oVal, "A", true, new Pair<String,String>(tokens[2], "READDB"), econfig.getPerBaseMax());
                               	  	exptNames.add(oVal);
                                 }
+                                if(oName.equals("exptBam")) {
+                                	experiments.get(oVal).expt = new ExptDescriptor("","",oVal,"A",true,new Pair<String,String>(tokens[2],"BAM"),econfig.getPerBaseMax());
+                                	exptNames.add(oVal);
+                                }
                                 if(oName.equals("diffExptLoc")){
                                 	 experiments.get(oVal).isDiff=true;
                                 	 exptNames.add(oVal);
