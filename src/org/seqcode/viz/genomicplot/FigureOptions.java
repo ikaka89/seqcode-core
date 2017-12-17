@@ -198,7 +198,7 @@ public class FigureOptions {
 
 						//Experiments
 						if(tokens.length>2){
-							if(oName.equals("exptLoc") || oName.equals("diffExptLoc")){
+							if(oName.equals("exptLoc") || oName.equals("diffExptLoc") || oName.equals("exptBam")){
                                 if(!experiments.containsKey(oVal)){
                                      experiments.put(oVal, new SeqExperiment());
                                      System.err.println("Experiment: "+oVal);
