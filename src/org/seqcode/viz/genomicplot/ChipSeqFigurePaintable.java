@@ -7,6 +7,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -36,7 +37,7 @@ public class ChipSeqFigurePaintable extends FigurePaintable{
 	protected List<List<Gene>> geneSets=new ArrayList<List<Gene>>();
 	protected List<String> geneSetNames = new ArrayList<String>();
 	
-	public ChipSeqFigurePaintable(FigureOptions opts){
+	public ChipSeqFigurePaintable(FigureOptions opts) throws SQLException{
 		options = opts;
 		reverseIt=options.reverseOrder;
 		chr = options.gRegion.getChrom();
@@ -47,6 +48,7 @@ public class ChipSeqFigurePaintable extends FigurePaintable{
 		//Initialize genes
 		if(options.useDBGenes){
 			geneSetNames.add("Reference");
+			
 			ArrayList<Gene> geneSet = new ArrayList<Gene>();
 			geneGen = new RefGeneGenerator<Region>(options.genome, "refGene");
 			geneGen.retrieveExons(true);
@@ -55,11 +57,18 @@ public class ChipSeqFigurePaintable extends FigurePaintable{
 			while(gi.hasNext()) {
 				geneSet.add(gi.next());
 			}geneSets.add(geneSet);
+			
 		}if(options.transcriptGTF != null){//Load GTF
 			geneSetNames.add(options.transcriptGTF.getName());
 			ArrayList<Gene> geneSet = new ArrayList<Gene>();
 			geneSet.addAll(loadGenes(options.transcriptGTF, options.gRegion));
+			System.out.println("I'm here");
+			for(Gene gg : geneSet) {
+				System.out.println(gg.getName());
+			}
 			geneSets.add(geneSet);
+			
+			
 		} 
 		//layout.setRegions(genes); 
 		

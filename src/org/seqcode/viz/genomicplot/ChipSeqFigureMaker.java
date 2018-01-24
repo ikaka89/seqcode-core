@@ -1,6 +1,7 @@
 package org.seqcode.viz.genomicplot;
 
 import java.io.File;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 
@@ -22,7 +23,7 @@ public class ChipSeqFigureMaker {
 	private FigureOptions options; 
 	private PaintableFrame plotter;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		ArgParser ap = new ArgParser(args);
         if(!ap.hasKey("options")) { 
             System.err.println("Usage:\n " +
@@ -39,7 +40,7 @@ public class ChipSeqFigureMaker {
         
 	}
 	
-	public ChipSeqFigureMaker(String optionFile, GenomeConfig g, ExptConfig e){
+	public ChipSeqFigureMaker(String optionFile, GenomeConfig g, ExptConfig e) throws SQLException{
 		gconfig=g;
 		econfig=e;
 		options = new FigureOptions(gconfig, econfig);

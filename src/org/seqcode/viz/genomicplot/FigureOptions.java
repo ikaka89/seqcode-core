@@ -184,7 +184,8 @@ public class FigureOptions {
 							loadBackgroundFromFile(oVal);
 						}if(oName.equals("dbGenes")){
 							if(oVal.equals("true")){useDBGenes=true;
-							}else{useDBGenes=false;}
+							}else{useDBGenes=false;
+						}
 						}if(oName.equals("gtfFile")){
 							transcriptGTF = new File(oVal);
 						}if(oName.equals("rnaExpt")){
@@ -208,7 +209,12 @@ public class FigureOptions {
                               	  	exptNames.add(oVal);
                                 }
                                 if(oName.equals("exptBam")) {
-                                	experiments.get(oVal).expt = new ExptDescriptor("","",oVal,"A",true,new Pair<String,String>(tokens[2],"BAM"),econfig.getPerBaseMax());
+                                	String[] files = tokens[2].split(",");
+                                	List<Pair<String,String>> srcs = new ArrayList<Pair<String,String>>();
+                                	for(int i=0; i<files.length; i++) {
+                                		srcs.add(new Pair<String,String>(files[i],"BAM"));
+                                	}
+                                	experiments.get(oVal).expt = new ExptDescriptor("","",oVal,"A",true,srcs,econfig.getPerBaseMax());
                                 	exptNames.add(oVal);
                                 }
                                 if(oName.equals("diffExptLoc")){
@@ -306,6 +312,7 @@ public class FigureOptions {
 						}
 					}
 				}
+				
 				
 				//Load samples now that all options are loaded
 				for(String s : experiments.keySet()){
