@@ -152,7 +152,7 @@ implements Paintable, PaintableChangedListener {
 
         if (raster) {
             BufferedImage im = 
-                new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+                new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
             Graphics g = im.getGraphics();
             Graphics2D g2 = (Graphics2D)g;
             g2.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
