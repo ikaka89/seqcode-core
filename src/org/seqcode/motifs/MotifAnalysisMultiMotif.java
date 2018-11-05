@@ -280,14 +280,22 @@ public class MotifAnalysisMultiMotif {
 			}
 			x++;
 		}
+		StringBuilder sb = new StringBuilder();
 		for(int i=0; i<posSet.size(); i++){
-			System.out.print(posLines.get(i));
+			//System.out.print(posLines.get(i));
 			x=0;
 			for(WeightMatrix m : motifs){
-				System.out.print("\t"+m.getName()+"\t"+bestScores[x][i]+"\t"+bestHits[x][i]);
+				sb.append(posLines.get(i));sb.append("\t");
+				sb.append(m.getName());sb.append("\t");
+				sb.append(bestScores[x][i]);sb.append("\t");
+				sb.append(bestHits[x][i]);
+				//System.out.print("\t"+m.getName()+"\t"+bestScores[x][i]+"\t"+bestHits[x][i]);
 				x++;
-			}System.out.print("\n");			
+			}
+			//System.out.print("\n");
+			sb.append("\n");
 		}
+		System.out.println(sb.toString());
 	}
 	//Print some occurrence and over-representation info for each motif
 	public void printHitStats(){
