@@ -289,11 +289,11 @@ public class MotifAnalysisMultiMotif {
 				sb.append(m.getName());sb.append("\t");
 				sb.append(bestScores[x][i]);sb.append("\t");
 				sb.append(bestHits[x][i]);
+				sb.append("\n");
 				//System.out.print("\t"+m.getName()+"\t"+bestScores[x][i]+"\t"+bestHits[x][i]);
 				x++;
 			}
 			//System.out.print("\n");
-			sb.append("\n");
 		}
 		System.out.println(sb.toString());
 	}
